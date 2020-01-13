@@ -1,0 +1,88 @@
+
+vultr 453424829@qq.com Zj67255299
+45.77.202.209  [Gw55U,Q[tE6jUfP
+
+yum -y install gcc gcc-c++ autoconf pcre-devel make automake
+yum -y install wget httpd-tools vim
+
+yum list | grep nginx （查看一下yum是否已经存在命令）
+
+vim /etc/yum.repos.d/nginx.repo （然后写入下面内容）
+
+
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+
+yum install nginx
+
+nginx -v
+
+nginx配置目录
+cd /etc/nginx/nginx.conf
+cd /etc/nginx/conf.d/default.conf
+注：配置文件里面的#号是注释的意思
+
+静态文件html目录
+cd /usr/share/nginx/html下面
+
+// 查看是否开启80端口
+firewall-cmd --query-port=80/tcp --zone=public
+
+// 开启80端口
+firewall-cmd --zone=public --add-port=80/tcp --permanent 开启后需要重启服务
+
+
+
+//查看防火墙状态
+systemctl status firewalld
+
+// 开启防火墙，没有任何提示即开启成功
+
+systemctl start firewalld
+
+//关闭防火墙
+systemctl stop firewalld
+
+
+// 启动nginx服务
+systemctl start nginx.service
+
+输入命令后，没有任何提示，那我们如何知道Nginx服务已经启动了哪？可以使用Linux的组合命令，进行查询服务的运行状况。
+
+ps aux | grep nginx
+
+// 停止ngix 服务
+systemctl stop nginx.service
+
+
+// 查看端口占用状态
+netstat -tlnp
+
+// centos7没有netstat命令的解决办法
+
+yum search ifconfig
+通过yum search 这个命令我们发现ifconfig这个命令是在net-tools.x86_64这个包里，接下来我们安装这个包就行了
+运行  yum install net-tools  就OK了
+
+// 安装文件传输工具
+yum -y install lrzsz
+
+//查看是否安装成功
+rpm -qa|grep lrzsz
+
+// 上传文件
+到对应目录后 rz   如果覆盖原文件 rz -y 
+不能上传文件夹 先打压缩包上传再解压 
+zip格式
+zip命令
+    
+    解压：unzip filename.zip
+    压缩：zip filename.zip dirname
+
+nginx部署vuecli打包后的
+直接上传dist压缩包到
+更改/etc/nginx/conf.d/default.conf里面location的页面指向的路径配置 
+如果是History模式 加一条try_files $uri $uri/ /index.html;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

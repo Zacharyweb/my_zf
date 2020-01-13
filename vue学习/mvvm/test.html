@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="school.name"/>
+        <div>{{school.name}} {{school.age}}</div>
+        <div>{{school.age}}</div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+        </ul>  
+    </div>
+
+    <!-- <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul> 
+    <div id="div"></div>   -->
+    
+</body>
+<script src="./mvvm.js"></script>
+<script>
+    new MVVM({
+        el:'#app',
+        data:{
+            school:{
+                name:'zj',
+                age:28
+            }
+        }
+    })
+                           
+    // let fragement = document.createDocumentFragment();
+    // let div = document.querySelector('#div');
+    // let el = document.querySelector('#ul');
+    // let firstChild;
+    // while(firstChild = el.firstChild){
+    //     div.appendChild(firstChild);
+    // }
+</script>
+</html>

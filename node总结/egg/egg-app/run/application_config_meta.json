@@ -1,0 +1,314 @@
+{
+  "keys": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+  "view": {
+    "defaultExtension": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "defaultViewEngine": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "mapping": {
+      ".html": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js"
+    },
+    "root": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-view\\config\\config.default.js",
+    "cache": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-view\\config\\config.local.js"
+  },
+  "url": {
+    "news": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js"
+  },
+  "cache": {
+    "title": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js"
+  },
+  "mysql": {
+    "client": {
+      "host": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+      "port": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+      "user": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+      "password": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+      "database": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js"
+    },
+    "app": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "agent": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "default": {
+      "database": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\_egg-mysql@3.0.0@egg-mysql\\config\\config.default.js",
+      "connectionLimit": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\_egg-mysql@3.0.0@egg-mysql\\config\\config.default.js"
+    }
+  },
+  "sequelize": {
+    "dialect": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "host": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "port": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "username": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "password": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "database": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js"
+  },
+  "i18n": {
+    "defaultLocale": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+    "dirs": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-i18n\\config\\config.default.js",
+    "queryField": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-i18n\\config\\config.default.js",
+    "cookieField": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-i18n\\config\\config.default.js",
+    "cookieDomain": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-i18n\\config\\config.default.js",
+    "cookieMaxAge": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-i18n\\config\\config.default.js"
+  },
+  "middleware": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js",
+  "robot": {
+    "ua": "D:\\zf\\node总结\\egg\\egg-app\\config\\config.default.js"
+  },
+  "session": {
+    "maxAge": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-session\\config\\config.default.js",
+    "key": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-session\\config\\config.default.js",
+    "httpOnly": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-session\\config\\config.default.js",
+    "encrypt": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-session\\config\\config.default.js"
+  },
+  "security": {
+    "domainWhiteList": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+    "protocolWhiteList": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+    "defaultMiddleware": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+    "csrf": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "type": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "ignoreJSON": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "useSession": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "cookieName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "sessionName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "headerName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "bodyName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "queryName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "refererWhiteList": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "xframe": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "value": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "hsts": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.local.js",
+      "maxAge": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "includeSubdomains": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "dta": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "methodnoallow": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "noopen": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "nosniff": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "referrerPolicy": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "value": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "xssProtection": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "value": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "csp": {
+      "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "policy": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    },
+    "ssrf": {
+      "ipBlackList": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js",
+      "checkAddress": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+    }
+  },
+  "helper": {
+    "shtml": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-security\\config\\config.default.js"
+  },
+  "jsonp": {
+    "limit": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-jsonp\\config\\config.default.js",
+    "callback": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-jsonp\\config\\config.default.js",
+    "csrf": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-jsonp\\config\\config.default.js"
+  },
+  "onerror": {
+    "errorPageUrl": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-onerror\\config\\config.default.js",
+    "appErrorFilter": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-onerror\\config\\config.default.js",
+    "templatePath": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-onerror\\config\\config.default.js"
+  },
+  "watcher": {
+    "type": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-watcher\\config\\config.local.js",
+    "eventSources": {
+      "default": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-watcher\\config\\config.default.js",
+      "development": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-watcher\\config\\config.default.js"
+    }
+  },
+  "customLogger": {
+    "scheduleLogger": {
+      "consoleLevel": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-schedule\\config\\config.default.js",
+      "file": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-schedule\\config\\config.default.js"
+    }
+  },
+  "schedule": {
+    "directory": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-schedule\\config\\config.default.js"
+  },
+  "multipart": {
+    "mode": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "autoFields": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "defaultCharset": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fieldNameSize": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fieldSize": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fields": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fileSize": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "files": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "fileExtensions": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "whitelist": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "tmpdir": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js",
+    "cleanSchedule": {
+      "cron": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-multipart\\config\\config.default.js"
+    }
+  },
+  "development": {
+    "watchDirs": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-development\\config\\config.default.js",
+    "ignoreDirs": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-development\\config\\config.default.js",
+    "fastReady": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-development\\config\\config.default.js",
+    "reloadOnDebug": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-development\\config\\config.default.js",
+    "overrideDefault": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-development\\config\\config.default.js"
+  },
+  "logrotator": {
+    "filesRotateByHour": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "hourDelimiter": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "filesRotateBySize": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "maxFileSize": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "maxFiles": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "rotateDuration": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-logrotator\\config\\config.default.js",
+    "maxDays": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-logrotator\\config\\config.default.js"
+  },
+  "static": {
+    "prefix": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-static\\config\\config.default.js",
+    "dir": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-static\\config\\config.default.js",
+    "dynamic": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-static\\config\\config.default.js",
+    "preload": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-static\\config\\config.default.js",
+    "buffer": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-static\\config\\config.default.js",
+    "maxFiles": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-static\\config\\config.default.js"
+  },
+  "nunjucks": {
+    "autoescape": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-view-nunjucks\\config\\config.default.js",
+    "throwOnUndefined": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-view-nunjucks\\config\\config.default.js",
+    "trimBlocks": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-view-nunjucks\\config\\config.default.js",
+    "lstripBlocks": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-view-nunjucks\\config\\config.default.js",
+    "cache": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg-view-nunjucks\\config\\config.local.js"
+  },
+  "env": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "name": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "cookies": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "proxy": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "maxIpsCount": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "maxProxyCount": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "protocolHeaders": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "ipHeaders": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "hostHeaders": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "pkg": {
+    "name": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "version": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "description": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "main": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "scripts": {
+      "test": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "dev": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+    },
+    "keywords": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "author": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "license": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "dependencies": {
+      "egg": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "egg-bin": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "egg-mysql": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "egg-sequelize": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "egg-view-nunjucks": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "express": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "mockjs": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "moment": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "mysql2": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "sequelize": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "sequelize-cli": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+    }
+  },
+  "baseDir": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "HOME": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "rundir": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "dump": {
+    "ignore": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+  },
+  "confusedConfigurations": {
+    "bodyparser": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "notFound": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "sitefile": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "middlewares": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "httpClient": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+  },
+  "notfound": {
+    "pageUrl": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+  },
+  "siteFile": {
+    "/favicon.ico": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+  },
+  "bodyParser": {
+    "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "encoding": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "formLimit": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "jsonLimit": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "textLimit": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "strict": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "queryString": {
+      "arrayLimit": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "depth": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "parameterLimit": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+    },
+    "onerror": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+  },
+  "logger": {
+    "dir": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "encoding": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "env": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "level": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "consoleLevel": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "disableConsoleAfterReady": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "outputJSON": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "buffer": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "appLogName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "coreLogName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "agentLogName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "errorLogName": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "coreLogger": {
+      "consoleLevel": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.local.js"
+    },
+    "allowDebugAtProd": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+  },
+  "httpclient": {
+    "enableDNSCache": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "dnsCacheLookupInterval": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "dnsCacheMaxLength": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "request": {
+      "timeout": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+    },
+    "httpAgent": {
+      "keepAlive": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "freeSocketTimeout": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "maxSockets": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "maxFreeSockets": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+    },
+    "httpsAgent": {
+      "keepAlive": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "freeSocketTimeout": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "maxSockets": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "maxFreeSockets": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+    }
+  },
+  "meta": {
+    "enable": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "logging": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+  },
+  "coreMiddleware": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "workerStartTimeout": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "serverTimeout": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+  "cluster": {
+    "listen": {
+      "path": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "port": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+      "hostname": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+    }
+  },
+  "clusterClient": {
+    "maxWaitTime": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js",
+    "responseTimeout": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+  },
+  "onClientError": "D:\\zf\\node总结\\egg\\egg-app\\node_modules\\egg\\config\\config.default.js"
+}

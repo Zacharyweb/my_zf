@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 其实hash不用带斜杠/，一般都写上一个斜杆是为了看起来像个路径 -->
+    <a href="#/">首页</a>
+    <a href="#/mine">我的</a>
+    <a href="#/other">其他</a>
+    <div id="container"></div>
+</body>
+<script>
+
+    window.location.hash = window.location.hash.slice(1) || '/';
+    // window.location.hash = 'a'  出来的最终路径就是../../hash.html#a
+
+    let container = document.getElementById('container');
+    container.innerHTML = window.location.hash;
+    window.addEventListener('hashchange',()=>{
+        container.innerHTML = window.location.hash;
+    });
+</script>
+</html>

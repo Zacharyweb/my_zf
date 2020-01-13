@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+   .box{
+     width: 60px;
+     height: 60px;
+     position: fixed;
+     top:150px;
+     left: 50%;
+     margin-left: -30px;
+     background-color: pink;
+   }
+
+   .box-enter-active{
+      transition: all 0.3s linear;
+      top:10px;
+      opacity: 0;
+   }
+   .box-enter-to{
+      top:150px;
+      opacity: 1;
+   }
+   
+   .box-leave-active{
+      transition: all 0.3s linear;
+      top:150px;
+      opacity: 1;
+   }
+   .box-leave-to{
+      top:10px;
+      opacity: 0;
+   }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <transition name="box">
+            <div class="box" v-show="boxShow"></div>
+        </transition>
+        <h5>
+          <button @click="transitionTest">Transition Test</button>
+        </h5>
+    </div>
+</body>
+
+<script src="./node_modules/vue/dist/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            name:'zhujian',
+            boxShow:false
+        },
+        mounted(){
+            console.log('mounted');
+        },
+        methods:{
+            transitionTest(){
+          
+              this.boxShow = !this.boxShow;
+            }
+        }
+    });
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+redis数据类型
+
+1.string
+
+set key value
+
+get key
+
+del key
+
+2.hash 可以理解成js里的Object对象
+
+hmset name key1 val1 key2 val2
+
+hget name key1
+
+del name
+
+3.list 
+
+lpush key member1 member2 ...
+
+lrange name index1 index2 // 查看list[index1]到list[index2]
+
+4.set  string类型的无序集合 // 理解成元素不重复的list  即一个value已存在的话不会重复添加
+
+sadd name member
+smembers name
+
+5.zset string类型的 有序集合
+
+zadd key score member  // 每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
+zrangebyscore key score1 score2
+
+
+6.pipeline
+
+multi 接下来的命令放入队列
+exec 执行队列里的任务
+discard 取消队列
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

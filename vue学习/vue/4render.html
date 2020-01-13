@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+  
+</body>
+
+<script src="./node_modules/vue/dist/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            name:'zhujian'
+        },
+        // render(h){
+        //     return h('h1',{
+        //         class:'zj',
+        //         attrs:{
+        //             id:'wwmm',
+        //             'data-a':'xxx'
+        //         },
+        //         on:{
+        //             click(e){
+        //                 console.log(e);
+        //             }
+        //         }
+                
+        //     },'你好');
+        // },
+        render(h){
+            return <h2>xixi</h2>
+        },
+        mounted(){
+            console.log('mounted');
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,11 @@
+.content{
+    border:5px solid pink;
+}
+.nav{
+    padding:10px;
+    border:5px solid pink;
+    border-bottom: 0;
+}
+.nav a{
+    margin-right: 20px;
+}

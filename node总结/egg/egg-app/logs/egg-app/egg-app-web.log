@@ -1,0 +1,87 @@
+2019-12-19 10:07:55,437 ERROR 9584 [-/127.0.0.1/-/11ms GET /news] nodejs.AssertionError: Can't find ViewEngine "nuujucks"
+    at ContextView.[contextView#getViewEngine] (D:\zf\node总结\egg\egg-app\node_modules\egg-view\lib\context_view.js:88:5)
+    at ContextView.[contextView#render] (D:\zf\node总结\egg\egg-app\node_modules\egg-view\lib\context_view.js:69:39)
+    at async NewsController.index (D:\zf\node总结\egg\egg-app\app\controller\news.js:28:9)
+    at async D:\zf\node总结\egg\egg-app\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (D:\zf\node总结\egg\egg-app\node_modules\koa-session\index.js:41:7)
+    at async bodyParser (D:\zf\node总结\egg\egg-app\node_modules\koa-bodyparser\index.js:86:5)
+generatedMessage: false
+code: "ERR_ASSERTION"
+actual: undefined
+expected: true
+operator: "=="
+pid: 9584
+hostname: ALDPC0466
+
+2019-12-19 10:08:35,201 ERROR 7992 [-/127.0.0.1/-/20ms GET /news] nodejs.AssertionError: Can't find ViewEngine "nuujucks"
+    at ContextView.[contextView#getViewEngine] (D:\zf\node总结\egg\egg-app\node_modules\egg-view\lib\context_view.js:88:5)
+    at ContextView.[contextView#render] (D:\zf\node总结\egg\egg-app\node_modules\egg-view\lib\context_view.js:69:39)
+    at async NewsController.index (D:\zf\node总结\egg\egg-app\app\controller\news.js:28:9)
+    at async D:\zf\node总结\egg\egg-app\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (D:\zf\node总结\egg\egg-app\node_modules\koa-session\index.js:41:7)
+    at async bodyParser (D:\zf\node总结\egg\egg-app\node_modules\koa-bodyparser\index.js:86:5)
+generatedMessage: false
+code: "ERR_ASSERTION"
+actual: undefined
+expected: true
+operator: "=="
+pid: 7992
+hostname: ALDPC0466
+
+2019-12-19 13:55:31,557 ERROR 2940 [-/127.0.0.1/-/39ms GET /news?limit=1] nodejs.ReferenceError: lust is not defined
+    at NewsController.index (D:\zf\node总结\egg\egg-app\app\controller\news.js:6:21)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async D:\zf\node总结\egg\egg-app\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (D:\zf\node总结\egg\egg-app\node_modules\koa-session\index.js:41:7)
+    at async bodyParser (D:\zf\node总结\egg\egg-app\node_modules\koa-bodyparser\index.js:86:5)
+    at async D:\zf\node总结\egg\egg-app\node_modules\koa-static-cache\index.js:53:56
+
+pid: 2940
+hostname: ALDPC0466
+
+2019-12-20 16:33:54,698 INFO 2192 [egg-sequelize](2ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:34:07,304 INFO 2192 [egg-sequelize](2ms) Executed (default): SELECT `id`, `name`, `age`, `created_at`, `updated_at`, `created_at` AS `createdAt`, `updated_at` AS `updatedAt` FROM `users` AS `User`;
+2019-12-20 16:40:16,558 INFO 6276 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:40:17,989 INFO 7124 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:40:21,781 INFO 4976 [egg-sequelize](2ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:41:18,888 INFO 1732 [egg-sequelize](2ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:41:20,441 INFO 11908 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:41:32,335 INFO 10208 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:43:22,627 INFO 4300 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:43:25,639 INFO 6888 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:43:25,975 INFO 10160 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:43:57,309 INFO 1604 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:46:52,411 INFO 10644 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:50:10,439 INFO 7420 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:50:11,997 INFO 5668 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:51:40,700 INFO 3056 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 16:51:42,448 INFO 3964 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:02:32,711 INFO 7660 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:02:34,357 INFO 9204 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:03:44,593 INFO 12660 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:03:46,001 INFO 8804 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:04:42,867 INFO 9812 [egg-sequelize](2ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:04:44,494 INFO 1784 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:04:52,021 INFO 11664 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:04:53,484 INFO 3684 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:09:46,500 INFO 4976 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:12:46,874 INFO 3828 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:12:48,568 INFO 10344 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:12:54,937 INFO 5952 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:13:55,636 INFO 13056 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:13:57,318 INFO 2192 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:14:27,907 INFO 2720 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:14:31,540 INFO 12356 [egg-sequelize](2ms) Executed (default): SELECT 1+1 AS result
+2019-12-20 17:14:33,414 INFO 8492 [egg-sequelize](1ms) Executed (default): SELECT 1+1 AS result

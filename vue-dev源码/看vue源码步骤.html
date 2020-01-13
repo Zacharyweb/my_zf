@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body style="padding-left: 200px;">
+	<h1 style="line-height: 1.25; font-size: 2.2rem; margin-top: -1.5rem; padding-top: 4.6rem; margin-bottom: 1rem; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    Vue原理剖析
+</h1>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#%E6%BA%90%E7%A0%81%E7%9B%AE%E5%BD%95%E5%89%96%E6%9E%90" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>源码目录剖析
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            comipler 模板解析的相关文件
+        </p>
+    </li>
+    <li>
+        <p>
+            core 核心代码
+        </p>
+    </li>
+    <li>
+        <p>
+            platforms 对应的两个平台
+        </p>
+    </li>
+    <li>
+        <p>
+            server服务端渲染相关
+        </p>
+    </li>
+    <li>
+        <p>
+            sfc 解析vue文件变成一个对象
+        </p>
+    </li>
+    <li>
+        <p>
+            shared 定义的工具方法
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#%E4%BB%8E%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E5%89%96%E6%9E%90" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>从入口文件剖析
+</h2>
+<p style="line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    引入代码时会优先采用module 如果找不到则会加载main对应文件
+</p>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p style="line-height: 1.7;">
+            package.json
+        </p>
+    </li>
+    <ul style="list-style-type: square;" class=" list-paddingleft-2">
+        <li>
+            <p>
+                &quot;main&quot;: &quot;dist/vue.runtime.common.js&quot;,
+            </p>
+        </li>
+        <li>
+            <p>
+                &quot;module&quot;: &quot;dist/vue.runtime.esm.js&quot;
+            </p>
+        </li>
+    </ul>
+    <li>
+        <p style="line-height: 1.7;">
+            查看npm run build的结果
+        </p>
+    </li>
+    <ul style="list-style-type: square;" class=" list-paddingleft-2">
+        <li>
+            <p>
+                &quot;build&quot;: &quot;node scripts/build.js&quot;
+            </p>
+        </li>
+    </ul>
+    <li>
+        <p style="line-height: 1.7;">
+            查看build.js,build中会基于config文件来实现打包
+        </p>
+        <blockquote style="font-size: 1rem; color: rgb(153, 153, 153); border-left: 0.2rem solid rgb(223, 226, 229); margin: 1rem 0px; padding: 0.25rem 0px 0.25rem 1rem;">
+            <p style="line-height: 1.7; margin-top: 0px; margin-bottom: 0px;">
+                找到打包前的文件 web/entry-runtime-with-compiler
+            </p>
+        </blockquote>
+    </li>
+    <ul style="list-style-type: square;" class=" list-paddingleft-2">
+        <li>
+            <p>
+                &#39;web-runtime-cjs-dev&#39; 只包含runtime
+            </p>
+        </li>
+        <li>
+            <p>
+                &#39;web-runtime-cjs-prod&#39;
+            </p>
+        </li>
+        <li>
+            <p>
+                &#39;web-full-cjs-dev&#39; 包含runtime+compiler
+            </p>
+        </li>
+        <li>
+            <p>
+                &#39;web-full-cjs-prod&#39;
+            </p>
+        </li>
+        <li>
+            <p>
+                &#39;web-runtime-esm&#39; 只包含runtime (es6 module)
+            </p>
+        </li>
+        <li>
+            <p>
+                &#39;web-full-esm&#39; 包含runtime+compiler(es6 module)
+            </p>
+        </li>
+        <li>
+            <p>
+                .......
+            </p>
+        </li>
+    </ul>
+    <li>
+        <p style="line-height: 1.7;">
+            entry-runtime-with-compiler
+        </p>
+    </li>
+    <ul style="list-style-type: square;" class=" list-paddingleft-2">
+        <li>
+            <p>
+                找到对应platforms下的web下的entry-runtime-with-compiler文件
+            </p>
+        </li>
+        <li>
+            <p>
+                &#39;./runtime/index&#39; Vue在runtime/index中定义
+            </p>
+        </li>
+    </ul>
+    <li>
+        <p style="line-height: 1.7;">
+            ./runtime/index
+        </p>
+    </li>
+    <ul style="list-style-type: square;" class=" list-paddingleft-2">
+        <li>
+            <p>
+                引入了 &#39;core/index&#39;中的Vue
+            </p>
+        </li>
+    </ul>
+    <li>
+        <p style="line-height: 1.7;">
+            core/index
+        </p>
+    </li>
+    <ul style="list-style-type: square;" class=" list-paddingleft-2">
+        <li>
+            <p>
+                &#39;./instance/index&#39; 引入了Vue
+            </p>
+        </li>
+        <li>
+            <p>
+                initGlobalAPI() 初始化全局API
+            </p>
+        </li>
+    </ul>
+    <li>
+        <p style="line-height: 1.7;">
+            instance/index
+        </p>
+    </li>
+</ul>
+<blockquote style="color: rgb(153, 153, 153); border-left: 0.2rem solid rgb(223, 226, 229); margin: 1rem 0px; padding: 0.25rem 0px 0.25rem 1rem; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <p style="line-height: 1.7; margin-top: 0px; margin-bottom: 0px;">
+        最终我们找到了Vue的构造函数
+    </p>
+</blockquote>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#entry-runtime-with-compiler" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>entry-runtime-with-compiler
+</h2>
+<p style="line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    在此文件中包装了$mount方法，如果有template会将template转化成render函数
+</p>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            compileToFunctions
+        </p>
+    </li>
+    <ul style="list-style-type: square;" class=" list-paddingleft-2">
+        <li>
+            <p>
+                词法分析
+            </p>
+        </li>
+        <li>
+            <p>
+                语法分析
+            </p>
+        </li>
+        <li>
+            <p>
+                生成代码
+            </p>
+        </li>
+        <li>
+            <p>
+                new Function，转化成render函数
+            </p>
+        </li>
+    </ul>
+</ul>
+<blockquote style="color: rgb(153, 153, 153); border-left: 0.2rem solid rgb(223, 226, 229); margin: 1rem 0px; padding: 0.25rem 0px 0.25rem 1rem; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <p style="line-height: 1.7; margin-top: 0px; margin-bottom: 0px;">
+        如果有render会先调用render，没有render会找模板是不是 #号方式引入.如果不是就找外部模板
+    </p>
+</blockquote>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#runtime-index-js" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>runtime/index.js
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            Vue.prototype.<span style="font-weight: 600;">patch</span>&nbsp;提供了__patach__方法
+        </p>
+    </li>
+    <li>
+        <p>
+            $mount方法通用的$mount方法，会调用挂载组件的方法
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#core-index-js" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>core/index.js
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            initGlobalApi 初始化全局api方法
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#initglobalapi" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>initGlobalAPI
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            Vue.util 初始化vue的工具方法
+        </p>
+    </li>
+    <li>
+        <p>
+            Vue.set 响应式变化的方法
+        </p>
+    </li>
+    <li>
+        <p>
+            Vue.delete
+        </p>
+    </li>
+    <li>
+        <p>
+            Vue.nextTick
+        </p>
+    </li>
+    <li>
+        <p>
+            Vue.component
+        </p>
+    </li>
+    <li>
+        <p>
+            Vue.directive
+        </p>
+    </li>
+    <li>
+        <p>
+            Vue.filter
+        </p>
+    </li>
+</ul>
+<blockquote style="color: rgb(153, 153, 153); border-left: 0.2rem solid rgb(223, 226, 229); margin: 1rem 0px; padding: 0.25rem 0px 0.25rem 1rem; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <p style="line-height: 1.7; margin-top: 0px; margin-bottom: 0px;">
+        增加了keep-alive组件
+    </p>
+</blockquote>
+<pre class="language-javascript" style="color: rgb(104, 104, 104); background-color: transparent; font-family: Consolas, Monaco, &quot;Andale Mono&quot;, &quot;Ubuntu Mono&quot;, monospace; font-size: 1em; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.4; tab-size: 4; hyphens: none; padding: 1.25rem 1.5rem 1.25rem 4.5rem; margin-top: 0.85rem; margin-bottom: 0.85rem; overflow: auto; border-radius: 6px; position: relative; z-index: 1; vertical-align: middle;">Vue.nextTick // 浏览器事件环
+initUse(Vue) // 初始化Vue.use 默认会调用当前插件的install方法
+initMixin(Vue) //初始化Vue.mixin   混合 将传入的属性混合到this.options中
+initExtend(Vue) // 初始化Vue.extend 会创建个子类 继承于父类</pre>
+<p>
+    <br/>
+</p>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#%E5%88%86%E6%9E%90%E5%85%A5%E5%8F%A3%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BA%8B%EF%BC%9F" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>分析入口做了哪些事？
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            instance/index vue的构造函数中默认会调用this._init方法
+        </p>
+    </li>
+</ul>
+<pre class="language-javascript" style="color: rgb(104, 104, 104); background-color: transparent; font-family: Consolas, Monaco, &quot;Andale Mono&quot;, &quot;Ubuntu Mono&quot;, monospace; font-size: 1em; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.4; tab-size: 4; hyphens: none; padding: 1.25rem 1.5rem 1.25rem 4.5rem; margin-top: 0.85rem; margin-bottom: 0.85rem; overflow: auto; border-radius: 6px; position: relative; z-index: 1; vertical-align: middle;">// 初始化vue生命周期流程以及响应式流程启动
+initMixin(Vue) // _init
+// 初始实例属性和方法 $set\$delete\$watch 挂载与实例相关的方法
+stateMixin(Vue)
+// vue实例中事件相关的方法 $on\$once\$once\$off\$emit
+eventsMixin(Vue)
+// 生命周期相关方法  $forceUpdate $destroy
+lifecycleMixin(Vue)
+// 渲染函数 提供_render方法
+renderMixin(Vue)</pre>
+<blockquote style="color: rgb(153, 153, 153); border-left: 0.2rem solid rgb(223, 226, 229); margin: 1rem 0px; padding: 0.25rem 0px 0.25rem 1rem; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <p style="line-height: 1.7; margin-top: 0px; margin-bottom: 0px;">
+        生命周期图
+    </p>
+</blockquote>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#initmixin" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>initMixin
+</h2>
+<pre class="language-javascript" style="color: rgb(104, 104, 104); background-color: transparent; font-family: Consolas, Monaco, &quot;Andale Mono&quot;, &quot;Ubuntu Mono&quot;, monospace; font-size: 1em; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.4; tab-size: 4; hyphens: none; padding: 1.25rem 1.5rem 1.25rem 4.5rem; margin-top: 0.85rem; margin-bottom: 0.85rem; overflow: auto; border-radius: 6px; position: relative; z-index: 1; vertical-align: middle;">initLifecycle(vm) // 初始化家族关系
+initEvents(vm)    // 给实例增加events属性
+initRender(vm)    // 在实例上增加createElement方法
+callHook(vm, &#39;beforeCreate&#39;) // 调用beforeCreated方法
+initInjections(vm) // 初始化inject方法
+initState(vm)      // 初始化 props,method,data,watch
+initProvide(vm)    // 初始化话provide方法
+callHook(vm, &#39;created&#39;) // 调用created生命周期
+vm.$mount(vm.$options.el) // 挂载元素</pre>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#initstate" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>initState
+</h2>
+<p style="line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    初始化实例上的内容
+</p>
+<pre class="language-javascript" style="color: rgb(104, 104, 104); background-color: transparent; font-family: Consolas, Monaco, &quot;Andale Mono&quot;, &quot;Ubuntu Mono&quot;, monospace; font-size: 1em; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.4; tab-size: 4; hyphens: none; padding: 1.25rem 1.5rem 1.25rem 4.5rem; margin-top: 0.85rem; margin-bottom: 0.85rem; overflow: auto; border-radius: 6px; position: relative; z-index: 1; vertical-align: middle;">initProps(vm, opts.props) // 初始化属性
+initMethods(vm, opts.methods) // 初始化方法
+initData(vm)  // 初始化数据i
+nitComputed(vm, opts.computed) // 初始化计算属性
+initWatch(vm, opts.watch) // 初始化watch</pre>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#iniprops" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>iniProps
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            将所有的属性放到_props上
+        </p>
+    </li>
+    <li>
+        <p>
+            通过vm代理_props上的属性
+        </p>
+    </li>
+    <li>
+        <p>
+            如果是跟节点将属性变成响应式的属性
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#initmethods" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>initMethods
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            在实例上增加对应的方法
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#initdata" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>initData
+</h2>
+<p style="line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    响应式原理
+</p>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            observe(data, true /* asRootData */)
+        </p>
+    </li>
+    <li>
+        <p>
+            this.walk(value) // 循环遍历
+        </p>
+    </li>
+    <li>
+        <p>
+            defineReactive(obj, keys[i]); // 定义响应式数据变化
+        </p>
+    </li>
+    <li>
+        <p>
+            get方法中dep.depend()依赖收集
+        </p>
+    </li>
+    <li>
+        <p>
+            set方法中dep.notify()通知更新
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#initcomputed" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>initComputed
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            通过watcher实现计算属性
+        </p>
+    </li>
+    <li>
+        <p>
+            如果watcher是脏的就获取最新结果
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#initwatch" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>initWatch
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            借用Watcher绑定$watch,初始化$watch方法
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#mount" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>$mount
+</h2>
+<p style="line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    将模板编译成函数
+</p>
+<pre class="language-javascript" style="color: rgb(104, 104, 104); background-color: transparent; font-family: Consolas, Monaco, &quot;Andale Mono&quot;, &quot;Ubuntu Mono&quot;, monospace; font-size: 1em; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.4; tab-size: 4; hyphens: none; padding: 1.25rem 1.5rem 1.25rem 4.5rem; margin-top: 0.85rem; margin-bottom: 0.85rem; overflow: auto; border-radius: 6px; position: relative; z-index: 1; vertical-align: middle;">compileToFunctions(template, {
+    outputSourceRange: process.env.NODE_ENV !== &#39;production&#39;,
+    shouldDecodeNewlines,
+    shouldDecodeNewlinesForHref,
+    delimiters: options.delimiters,
+    comments: options.comments}, this);// 将解析出来的方法放到this上，调用上层mount方法// mountComponent();updateComponent = () =&gt; { // 增加更新组件方法
+    vm._update(vm._render(), hydrating)}// 监听数据变化 执行beforeUpdate方法new Watcher(vm, updateComponent, noop, {
+    before () {
+        if (vm._isMounted &amp;&amp; !vm._isDestroyed) {
+            callHook(vm, &#39;beforeUpdate&#39;)
+        }
+    }}, true /* isRenderWatcher */)callHook(vm, &#39;mounted&#39;) // 组件挂载完成</pre>
+<p>
+    <br/>
+</p>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#lifecyclemixin" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>lifecycleMixin
+</h2>
+<p style="line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    调用_update方法
+</p>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            Vue.prototype._update
+        </p>
+    </li>
+    <ul style="list-style-type: square;" class=" list-paddingleft-2">
+        <li>
+            <p>
+                vm.<span style="font-weight: 600;">patch</span>() 渲染出真实的dom元素
+            </p>
+        </li>
+    </ul>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#patch-%E6%96%B9%E6%B3%95" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 1;">#</a>__patch__方法
+</h2>
+<p style="line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    dom-diff原理
+</p>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            createPatchFunction
+        </p>
+    </li>
+</ul>
+<h2 style="line-height: 1.25; font-size: 1.65rem; padding-bottom: 0.3rem; border-bottom: 1px solid rgb(234, 236, 239); margin-top: -3.1rem; padding-top: 4.6rem; margin-bottom: 0px; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);">
+    <a href="http://www.zhufengpeixun.cn/train/vue-info/source.html#rendermixin" class="header-anchor" style="font-weight: 500; text-decoration-line: none; color: rgb(62, 175, 124); font-size: 0.85em; float: left; margin-left: -0.87em; padding-right: 0.23em; margin-top: 0.125em; opacity: 0;">#</a>renderMixin
+</h2>
+<ul style="padding-left: 1.2em; line-height: 1.7; color: rgb(44, 62, 80); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2">
+    <li>
+        <p>
+            Vue.prototype._render 获取虚拟dom元素
+        </p>
+    </li>
+    <li>
+        <p>
+            vm._update会更新页面
+        </p>
+    </li>
+</ul>
+<p>
+    <br/>
+</p>
+	
+</body>
+</html>

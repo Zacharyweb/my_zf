@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a onclick="push('/')">首页</a>
+    <a onclick="push('/about')">关于</a>
+    <div id="container"></div>
+</body>
+<script>
+    console.log(window.location.pathname);
+    let container = document.getElementById('container');
+    function push(path){
+        history.pushState({},null,path);
+        container.innerHTML = path;
+    };
+
+    window.addEventListener('popstate',()=>{
+    //    console.log(window.location);
+       container.innerHTML = window.location.pathname;
+    })
+</script>
+</html>

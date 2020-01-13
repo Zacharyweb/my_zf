@@ -1,0 +1,53 @@
+2019-12-19 10:07:55,437 ERROR 9584 [-/127.0.0.1/-/11ms GET /news] nodejs.AssertionError: Can't find ViewEngine "nuujucks"
+    at ContextView.[contextView#getViewEngine] (D:\zf\node总结\egg\egg-app\node_modules\egg-view\lib\context_view.js:88:5)
+    at ContextView.[contextView#render] (D:\zf\node总结\egg\egg-app\node_modules\egg-view\lib\context_view.js:69:39)
+    at async NewsController.index (D:\zf\node总结\egg\egg-app\app\controller\news.js:28:9)
+    at async D:\zf\node总结\egg\egg-app\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (D:\zf\node总结\egg\egg-app\node_modules\koa-session\index.js:41:7)
+    at async bodyParser (D:\zf\node总结\egg\egg-app\node_modules\koa-bodyparser\index.js:86:5)
+generatedMessage: false
+code: "ERR_ASSERTION"
+actual: undefined
+expected: true
+operator: "=="
+pid: 9584
+hostname: ALDPC0466
+
+2019-12-19 10:08:35,201 ERROR 7992 [-/127.0.0.1/-/20ms GET /news] nodejs.AssertionError: Can't find ViewEngine "nuujucks"
+    at ContextView.[contextView#getViewEngine] (D:\zf\node总结\egg\egg-app\node_modules\egg-view\lib\context_view.js:88:5)
+    at ContextView.[contextView#render] (D:\zf\node总结\egg\egg-app\node_modules\egg-view\lib\context_view.js:69:39)
+    at async NewsController.index (D:\zf\node总结\egg\egg-app\app\controller\news.js:28:9)
+    at async D:\zf\node总结\egg\egg-app\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (D:\zf\node总结\egg\egg-app\node_modules\koa-session\index.js:41:7)
+    at async bodyParser (D:\zf\node总结\egg\egg-app\node_modules\koa-bodyparser\index.js:86:5)
+generatedMessage: false
+code: "ERR_ASSERTION"
+actual: undefined
+expected: true
+operator: "=="
+pid: 7992
+hostname: ALDPC0466
+
+2019-12-19 13:55:31,557 ERROR 2940 [-/127.0.0.1/-/39ms GET /news?limit=1] nodejs.ReferenceError: lust is not defined
+    at NewsController.index (D:\zf\node总结\egg\egg-app\app\controller\news.js:6:21)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async D:\zf\node总结\egg\egg-app\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:50
+    at async xframe (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xframe.js:7:5)
+    at async xssProtection (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\xssProtection.js:7:5)
+    at async nosniff (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\nosniff.js:8:5)
+    at async noopen (D:\zf\node总结\egg\egg-app\node_modules\egg-security\lib\middlewares\noopen.js:8:5)
+    at async session (D:\zf\node总结\egg\egg-app\node_modules\koa-session\index.js:41:7)
+    at async bodyParser (D:\zf\node总结\egg\egg-app\node_modules\koa-bodyparser\index.js:86:5)
+    at async D:\zf\node总结\egg\egg-app\node_modules\koa-static-cache\index.js:53:56
+
+pid: 2940
+hostname: ALDPC0466
+

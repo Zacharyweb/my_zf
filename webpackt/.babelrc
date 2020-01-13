@@ -1,0 +1,14 @@
+{
+    "presets": [
+        ["@babel/preset-env",{  // @babel/preset-env es6->es5
+           "useBuiltIns":"usage", // 用来转化 [1,2,3].includes(3)这种实例上的新语法，按需加载，需要安装core-js@2或者3版本的
+           "corejs": 2  // 使用core-js@2（需npm i core-js@2先安装），用来替代balel-polyfill，但balel-polyfill全加载 这么配置就是按需加载了
+        }]
+    ],
+    "plugins": [
+        ["@babel/plugin-proposal-decorators",{"legacy": true }], // 用来转化类的装饰器语法，需用在下面那个插件前，legacy为true时下面的loose也必须为ture
+        ["@babel/plugin-proposal-class-properties",{"loose":true}],// 用来转换class C{ name = zj;}这种还在提案阶段的类语法loose：true编译后用this.name = 'zj' 为false用Object.definePrototype
+        "@babel/plugin-transform-runtime" // 节约代码插件，比如不同文件定义了多个class类 就会在打包后的代码中产生多个_classCallCheck函数，这个插件可以只生成一个公共的_classCallCheck方法,
+                                          // 它会调用 @babel/runtime 所以还需要npm i @babel/runtime --save 
+    ]
+}
