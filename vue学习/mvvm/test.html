@@ -15,7 +15,11 @@
             <li>1</li>
             <li>2</li>
         </ul>  
+        <div>{{fullName}}</div> 
+        <button v-on:click="change">变</button>
+        <div v-html="htmlText"></div>
     </div>
+    
 
     <!-- <ul id="ul">
         <li>1</li>
@@ -27,12 +31,26 @@
 </body>
 <script src="./mvvm.js"></script>
 <script>
-    new MVVM({
+    var vm = new MVVM({
         el:'#app',
         data:{
             school:{
                 name:'zj',
-                age:28
+                age:28,
+                msg:{
+                    address:'hz'
+                }
+            },
+            htmlText:'<h2>Hello Txt</h2>'
+        },
+        computed:{
+            fullName(){
+                return this.school.name + ' like pbb';
+            }
+        },
+        methods:{
+            change(){
+                this.school.name = 'xxxxxxxxxxx';
             }
         }
     })
